@@ -41,7 +41,7 @@ char * text1[] =
 {
    "      MENU",
    "      SENS",
-   "    VITESSE",
+   "     SPEED",
    "     MARCHE",
    "     MANUEL"
 };
@@ -50,24 +50,24 @@ int text1Bit = 0;
 char * text2[] = 
 {
    "1_SENS",
-   "2_VITESSE",
-   "3_DEMARRER ?",
-   "4_MANUEL"
+   "2_SPEED",
+   "3_START ?",
+   "4_MANU"
 };
 int text2Bit = 0;
 
 char * text3[] = 
 {
-   "     GAUCHE",
-   "     DROITE"
+   "     LEFT",
+   "     RIGHT"
 };
 int text3Bit = 0;
 
 char * text4[] = 
 {
-   "Vitesse 1",
-   "Vitesse 2",
-   "Vitesse 3"
+   "SPEED 1",
+   "SPEED 2",
+   "SPEED 3"
 };
 int text4Bit = 0;
 
@@ -118,7 +118,7 @@ Serial.begin(9600);
     
     lcd.begin(16, 2);
     lcd.setCursor(0, 0);
-    lcd.print("CONTROLE MOTEUR");
+    lcd.print("MOTOR CONTROL");
     lcd.setCursor(0, 1);
     lcd.print("      PAP");
     delay(2000);
@@ -178,14 +178,14 @@ Serial.print("PinCLK = ");Serial.print(digitalRead(PinCLK));Serial.print(" ;  Pi
       StepsToTake=50; 
       small_stepper.step(StepsToTake);
       lcd.setCursor(0, 1);
-      lcd.print("  Sens = DROITE");
+      lcd.print("  Sens = RIGHT");
     }
 
     if ((RotaryPosition + 1) == PrevPosition) { // Move motor CCW
       StepsToTake=-50;
       small_stepper.step(StepsToTake);
       lcd.setCursor(0, 1);
-      lcd.print("  Sens = GAUCHE");
+      lcd.print("  Sens = LEFT");
     }
       
   }
@@ -211,7 +211,7 @@ Serial.print("PinCLK = ");Serial.print(digitalRead(PinCLK));Serial.print(" ;  Pi
     }
     
   }
-                              // Eteindre les Broches Du moteur à l'arret
+                              // Switch off the spindles of the engine when stopped
   if(text1Bit != 3){
     for(int x=4;x<=7;x++){
   digitalWrite(x,LOW);
@@ -233,7 +233,7 @@ Serial.print("PinCLK = ");Serial.print(digitalRead(PinCLK));Serial.print(" ;  Pi
       if(V==3){
         T=2;
       }
-                                // Choix Vitesse
+                                // Speed ​​choice
 if(text1Bit==2){
       if(digitalRead(But4) == LOW){
      do{}while(digitalRead(But4) == LOW);
@@ -357,7 +357,7 @@ if(text1Bit==3){
       if(V == 1){
         MENU_V();
         lcd.setCursor(0,1);
-        lcd.print("Vitesse 1 *");                              
+        lcd.print("Speed 1 *");                              
       }else{
         MENU_V();
         lcd.setCursor(10,1);
@@ -368,7 +368,7 @@ if(text1Bit==3){
       if(V == 2){
         MENU_V();
         lcd.setCursor(0,1);
-        lcd.print("Vitesse 2 *");
+        lcd.print("Speed 2 *");
       }else{
         MENU_V();
         lcd.setCursor(10,1);
@@ -379,7 +379,7 @@ if(text1Bit==3){
       if(V == 3){
         MENU_V();
         lcd.setCursor(0,1);
-        lcd.print("Vitesse 3 *");
+        lcd.print("Speed 3 *");
       }else{
         MENU_V();
         lcd.setCursor(10,1);
@@ -395,7 +395,7 @@ if(text1Bit==3){
         
         MENU_S();
         lcd.setCursor(0,1);
-        lcd.print("     GAUCHE *");
+        lcd.print("     LEFT *");
       }else{
         MENU_S();
         lcd.setCursor(12,1);
@@ -407,7 +407,7 @@ if(text1Bit==3){
         
         MENU_S();
         lcd.setCursor(0,1);
-        lcd.print("     DROITE *");
+        lcd.print("     RIGHT *");
       }else{
         MENU_S();
         lcd.setCursor(12,1);
@@ -437,7 +437,7 @@ if(text1Bit==3){
     
    
 }
-                               // Menu PRINCIPALE :
+                               // Menu MAIN :
 void MENU1(){
   digitalWrite(ledV,HIGH);
   digitalWrite(ledR,LOW);
